@@ -135,5 +135,11 @@
             <DependentUpon>ViewController.cs</DependentUpon>
         </Compile>
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\AppXamarin\AppXamarin.csproj">
+        <Project>{8ACC82DC-EAB0-48B2-B9B3-8C0B0EECCC08}</Project>
+        <Name>AppXamarin</Name>
+      </ProjectReference>
+    </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

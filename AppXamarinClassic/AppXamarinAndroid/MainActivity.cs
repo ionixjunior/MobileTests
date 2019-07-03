@@ -3,7 +3,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
-using System.Net;
+using AppXamarin;
 
 namespace AppXamarinAndroid
 {
@@ -12,6 +12,7 @@ namespace AppXamarinAndroid
     {
         private Button _btnLoadData;
         private TextView _lblData;
+        private DataService _dataService;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -21,15 +22,14 @@ namespace AppXamarinAndroid
 
             _btnLoadData = FindViewById<Button>(Resource.Id.btnLoadData);
             _lblData = FindViewById<TextView>(Resource.Id.lblData);
+            _dataService = new DataService();
 
             _btnLoadData.Click += OnLoadDataClick;
         }
 
         private async void OnLoadDataClick(object sender, System.EventArgs e)
         {
-            var client = new WebClient();
-            var data = await client.DownloadStringTaskAsync("https://mobiletests.getsandbox.com/ping");
-            _lblData.Text = data;
+            _lblData.Text = await _dataService.LoadData();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
